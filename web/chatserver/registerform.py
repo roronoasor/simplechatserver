@@ -1,8 +1,6 @@
 from django import forms
 from django_mongoengine.mongo_auth.models import User
 
-
-
 class NewUserForm(forms.Form):
 	username = forms.CharField(label='Your username', max_length=50)
 	email = forms.EmailField(label='Your email', max_length=50)

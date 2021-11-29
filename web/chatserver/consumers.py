@@ -3,6 +3,7 @@ import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 from django_mongoengine.mongo_auth.models import User
+
 from .models import Chatroom, chatmessage
 
 class ChatConsumer(AsyncWebsocketConsumer):

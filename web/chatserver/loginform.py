@@ -1,5 +1,4 @@
 from django import forms
-# from .models import User
 from django_mongoengine.mongo_auth.models import User
 
 

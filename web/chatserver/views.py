@@ -1,12 +1,9 @@
-from django.shortcuts import render
-
 from django.shortcuts import  render, redirect
 from .registerform import NewUserForm
 from .loginform import LoginForm
 from django.contrib import messages
 
-from .models import User, Chatroom
-# from django_mongoengine.mongo_auth.models import User
+from .models import Chatroom
 
 from .authutils import create_user, authenticate, login_required
 
@@ -39,7 +36,6 @@ def register_request(request):
 		form = NewUserForm(request.POST)
 		if form.is_valid():
 			u = create_user(request.POST)
-			u.is_authenticated = True
 			request.session['is_login'] = True
 			request.session['username'] = u.username
 			messages.success(request, "Registration successful." )

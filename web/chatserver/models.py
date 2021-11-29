@@ -1,11 +1,11 @@
 from django.db import models
 
-from mongoengine import Document, fields, EmbeddedDocument, EmbeddedDocumentField
+from mongoengine import Document, fields
 
 
 
 class User(Document):
-    name = fields.StringField()
+    username = fields.StringField()
     email = fields.StringField()
     password = fields.StringField()
 
