@@ -1,0 +1,60 @@
+version: "3.9"
+
+volumes:
+  init-db:
+  data-db:
+  chatserver:
+  redisdata:
+  web-static:
+  web-django:
+
+services:
+  web:
+#    image: app
+    restart: always
+    build: ./web
+#    command: python manage.py runserver 0.0.0.0:8000
+    command: daphne solchatserver.asgi:application -b 0.0.0.0 -p 8001
+#    command: sudo ./run_chat_server.sh
+    volumes:
+#      - ./chatserver:/chatserver
+      - web-django:/usr/src/app
+      - web-static:/static
+    ports:
+      - 8000:8000
+    env_file: .env
+    links:
+      - mongodb
+      - redis
+
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "80:80"
+    volumes:
+      - web-static:/www/static
+    links:
+      - web:web
+      - redis:redis
+
+  mongodb:
+    image: mongo
+    restart: always
+    volumes:
+      - ./init-db:/docker-entrypoint-initdb.d
+      - ./data-db:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: solbot
+    ports:
+      - 27017:27017
+
+  redis:
+    image: redis:5
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - redisdata:/data
+
+

@@ -1,0 +1,49 @@
+{% extends "chatserver/chatclientbase.html" %}
+
+{% block content %}
+
+  {{ room_name|json_script:"room-name" }}
+  {{ loggedinusername|json_script:"loggedinusername" }}
+
+ {% load static %}
+ <script type="text/javascript" src="{% static "chatserver/chatclient.js" %}" defer></script>
+<!-- <link href="{% static "chatserver/chatclient.css" %}" rel="stylesheet" type="text/css" />-->
+
+
+  <!-- Panel Chat -->
+  <div class="panel" id="chat">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <i class="icon wb-chat-text" aria-hidden="true" ></i>
+            <form action = "/chat/chatinfo/chat_{{ room_name }}" method = "get">
+              <p style="text-align: center;"> {{ room_name }}
+<!--    <input type="submit" class="btn btn-primary" value="OK">-->
+
+          <input class="btn btn-primary" id="chat-room-info" type="submit" style="float: right;" value="Info"></input>
+          </p>
+              </form>
+      </h3>
+
+    </div>
+    <div class="panel-body">
+      <div class="chats" id="chats">
+      </div>
+    </div>
+    <div class="panel-footer">
+
+        <div class="input-group">
+          <input type="text" class="form-control" id="chat-message-input" placeholder="Compose new message here...">
+<!--          <input id="chat-message-input" type="text" ><br>-->
+          <span class="input-group-btn">
+            <button class="btn btn-primary" id="chat-message-submit" type="button">Send</button>
+<!--            <input id="chat-message-submit"  type="button" value="Send" >-->
+          </span>
+        </div>
+
+    </div>
+  </div>
+  <!-- End Panel Chat -->
+
+
+    {% endblock %}
+
