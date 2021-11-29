@@ -23,6 +23,15 @@ To stop the chat server, run
 docker-compose down
 ```
 
+## Usage
+
+1. Accessing the server for first time at [http://localhost/chat/](http://localhost/chat/) will prompt the user to login
+2. The Login page also provides a hyperlink to register if the user does not have an account in the chat server.
+3. Once the user logs in, the user will be provided a form to create a new room
+4. The created room url may alse be directly used to login.
+5. The chatroom provides an Info button to see actively logged in users.
+
+
 ## How it works
 
 simplechatserver is powered by Django Channels, channels_redis, Daphne, Mongo DB and nginx
