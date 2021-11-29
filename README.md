@@ -1,7 +1,7 @@
 # simplechatserver
 
 This is a simple chat server that can be easily deployed in the latest 
-macOS or Linux.
+macOS.
 
 
 It provides capabilities for a user to register, login, create chat rooms,
@@ -70,6 +70,10 @@ Further, inter django channels(consumers) communication through channels-redis c
 through the use of symmetric encryption keys as documented in https://github.com/django/channels_redis
 
 Password authentication can be replaced with a token based authentication along with Federated Access.
+
+Currently, credential are not enabled for accessing Mongo DB.
+
+If the App is hosted in AWS/GCP, service/policy based access can be enabled between django app and Database containers. 
 
 ### Sudden traffic spikes
 
